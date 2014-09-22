@@ -30,4 +30,5 @@ proguard/
 .idea
 /local.properties
 .DS_Store
-
+*.iml
+gradle/wrapper/gradle-wrapper.properties

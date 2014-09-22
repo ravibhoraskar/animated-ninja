@@ -16,6 +16,7 @@ import java.util.Random;
  *
  */
 public class SuggestionFragment extends Fragment {
+    public static final String ARG_OBJECT = "object";
 
     private TextView mMovieSuggestionView;
     private View mRootView;
@@ -37,21 +38,16 @@ public class SuggestionFragment extends Fragment {
         mResources = getResources();
         mRandom = new Random();
         mMovies = mResources.getStringArray(R.array.movies);
-        setMovieSuggestion();
-
-        mRootView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setMovieSuggestion();
-            }
-        });
-
+        setMovieSuggestion(mMovieSuggestionView, pickMovie(mMovies));
         return mRootView;
     }
 
-    private void setMovieSuggestion() {
-        mMovieSuggestionView.setText(mMovies[mRandom.nextInt(mMovies.length)]);
+    private void setMovieSuggestion(TextView frame, String movie) {
+        frame.setText(movie);
     }
 
-
+    private String pickMovie(String[] movies) {
+        Bundle args = getArguments();
+        return movies[args.getInt(ARG_OBJECT) % movies.length];
+    }
 }
