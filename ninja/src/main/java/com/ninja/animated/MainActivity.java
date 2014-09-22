@@ -1,28 +1,22 @@
 package com.ninja.animated;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-
 
 
 public class MainActivity extends ActionBarActivity {
+
+    MovieSwipeAdapter mMovieSwipeAdapter;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new SuggestionFragment())
-                    .commit();
-        }
+        // Instantiate the movie adapter, that shows new movies recommendations on swype.
+        mMovieSwipeAdapter = new MovieSwipeAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mMovieSwipeAdapter);
     }
 }
