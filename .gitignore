@@ -27,8 +27,7 @@ proguard/
 
 # Android Studio
 .gradle
-.idea/workspace.xml
+.idea
 /local.properties
-/.idea/workspace.xml
 .DS_Store
 
